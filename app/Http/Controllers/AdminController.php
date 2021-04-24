@@ -18,15 +18,12 @@ class AdminController extends Controller
     public function edit(Request $action, User $user)
     {
         $this->authorize('CheckAdmin', $user);
-        if ( array_key_exists('id', $action->all()) && !array_key_exists('post', $action->all()) ) {
+        if (array_key_exists('id', $action->all()) && !array_key_exists('content', $action->all())) {
             $post_get = Post::find($action->all()['id']);
             return view('admin/edit', ['post' => $post_get]);
-        } elseif ( array_key_exists('post', $action->all()) && array_key_exists('id', $action->all()) ) {
-            Post::where('id', $action->all()['id'])->update(['content' => $action->all()['post']]);
-            $post_get = Post::find($action->all()['id']);
-            // session()->flash('success', '文章更新成功！');
-            // return view('admin/edit', ['post' => $post_get]);
-            return 'success';
+        } elseif ( array_key_exists('id', $action->all()) && array_key_exists('content', $action->all()) ) {
+            Post::where('id', $action->all()['id'])->update($action->all());
+            return '提交成功！';
         } else {
             $posts = Post::orderBy('created','desc')->paginate(20)->toArray();
             return view('admin/lists', ['posts' => $posts]);

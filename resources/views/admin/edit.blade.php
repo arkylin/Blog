@@ -15,7 +15,7 @@
 
 @section('content')
 <!-- <h2><?php echo $MD_title ?></h2> -->
-<h1><input type="text" name="username" value="<?php echo $MD_title ?>"></h1>
+<h1><input type="text" id="post_title" value="<?php echo $MD_title ?>"></h1>
 
 <hr class="dropdown-divider">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor/dist/index.css" />
@@ -169,15 +169,19 @@
 function myFunction() {
     let PostValue = this.vditor.getValue();
     let PostData = {
-        id: {{$post -> id}},
-        post: PostValue
+        id: <?php echo $post['id'] ?>,
+        title: $("#post_title").val(),
+        content: PostValue
     };
     console.log(PostData);
     $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }});
-    $.post("<?php echo url()->current() ?>", PostData)
+    let a = $.post("<?php echo url()->current() ?>", PostData, function(data){
+        alert(data);
+    });
+    
 }
 
 
