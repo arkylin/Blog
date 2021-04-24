@@ -1,13 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light">
 @if (Auth::check())
-    @if (Gate::allows('CheckAdmin'))
-        <a class="navbar-brand" href="{{ route('admin_edit') }}">Arkylin's Blog</a>
-    @else
-    <a class="navbar-brand" href="{{ route('home') }}">Arkylin's Blog</a>
-    @endif
+    <b><a class="navbar-brand bold" href="{{ route('home') }}">Arkylin's Blog</a></b>
     <ul class="nav col align-self-end justify-content-end">
         @if (Gate::allows('CheckAdmin'))
-            <li><a class="btn" href="/">首页</a></li>
+            <li><a class="btn" href="{{ route('admin_edit') }}">编辑文章</a></li>
         @endif
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
