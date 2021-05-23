@@ -4,29 +4,28 @@
 
 @section('title')
 <?php
-    $MD_title = $post['title'];
-    if ( $MD_title !="" ) {
-        echo $MD_title . " | " . config('blog.Name');
-    } else {
-        echo config('blog.Name');
-    }
+    echo '新建文章' . " | " . config('blog.Name');
 ?>
 @stop
 
 @section('content')
 <div id="title">
 <h1><input type="text" id="post_title" v-model="post_title" :style="get_width"></h1>
+<input type="text" id="post_slug" v-model="post_slug" :style="get_width"> 
 </div>
 <script>
 Vue.createApp({
     data() {
         return {
-            post_title: '<?php echo $MD_title ?>'
+            post_title: '',
+            post_slug: ''
         }
     },
     computed: {
         get_width() {
-            return "width:" + this.post_title.length * 1.08 + "em"
+            if (this.post_title != "") {
+                return "width:" + this.post_title.length * 1.08 + "em"
+            }
         }
     }
 }).mount('#title')
@@ -150,11 +149,8 @@ Vue.createApp({
         }],
     },
     after () {
-        fetch('<?php echo url('posts/api/id') ?>/<?php echo $post['id'] ?>').
-        then(response => response.json()).
-        then(content => content['content']).
-        then(content => vditor.setValue(content))
-      },
+        vditor.setValue('')
+    },
     tab: '\t',
     //   upload: {
     //     accept: 'image/*,.mp3, .wav, .rar',
@@ -183,7 +179,6 @@ Vue.createApp({
 function myFunction() {
     let PostValue = this.vditor.getValue();
     let PostData = {
-        id: <?php echo $post['id'] ?>,
         title: $("#post_title").val(),
         content: PostValue
     };

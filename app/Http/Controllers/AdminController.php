@@ -24,9 +24,19 @@ class AdminController extends Controller
         } elseif ( array_key_exists('id', $action->all()) && array_key_exists('content', $action->all()) ) {
             Post::where('id', $action->all()['id'])->update($action->all());
             return '提交成功！';
+        } elseif ( !array_key_exists('id', $action->all()) && array_key_exists('new', $action->all()) ) {
+            return view('admin/new');;
+        } elseif ( !array_key_exists('id', $action->all()) && array_key_exists('content', $action->all()) ) {
+            Post::insert($action->all());
+            return '提交成功！';
         } else {
             $posts = Post::orderBy('created','desc')->paginate(20)->toArray();
             return view('admin/lists', ['posts' => $posts]);
         }
+    }
+
+    public function new(User $user) {
+        $this->authorize('CheckAdmin', $user);
+        return view('admin/new');
     }
 }
