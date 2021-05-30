@@ -10,8 +10,8 @@
 
 @section('content')
 <div id="title">
-<h1><input type="text" id="post_title" v-model="post_title" :style="get_width"></h1>
-<input type="text" id="post_slug" v-model="post_slug" :style="get_width"> 
+<h1><input type="text" id="post_title" v-model="post_title" :style="{width:get_width(post_title)}"></h1>
+<input type="text" id="post_slug" v-model="post_slug" :style="{width:get_width(post_slug)}">
 </div>
 <script>
 Vue.createApp({
@@ -21,10 +21,10 @@ Vue.createApp({
             post_slug: ''
         }
     },
-    computed: {
-        get_width() {
-            if (this.post_title != "") {
-                return "width:" + this.post_title.length * 1.08 + "em"
+    methods: {
+        get_width(text) {
+            if (text != "") {
+                return text.length * 1.088 + "em"
             }
         }
     }
