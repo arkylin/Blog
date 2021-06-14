@@ -49,6 +49,11 @@ function GetPostsLists($posts) {
             }
             $html .= '<h5 class="card-title">' . $post['title'] . '</h5>';
             $html .= '</a>';
+            $html .= '<i class="fas fa-edit" aria-hidden="true"></i>&nbsp;';
+            $html .= date('Y-m-d H:i:s',$post['created']);
+            $html .= ' | ';
+            $html .= '<i class="fas fa-history" aria-hidden="true"></i>&nbsp;';
+            $html .= date('Y-m-d H:i:s',$post['modified']);
             $html .= '<hr />';
 
             $preview = mb_substr($post['content'],0,config('blog.SummaryNum'),'utf-8');
@@ -87,5 +92,10 @@ function GetPostsLists($posts) {
     }
 	$html .= '</ul></nav>';
     return $html;
+}
+//生成文章编辑页面
+function GetPostEdit() {
+    $html = "";
+    
 }
 ?>
