@@ -4,6 +4,7 @@
 <input type="text" id="post_created" v-model="post_created" :style="{width:get_width(post_slug)}">
 </div>
 <script>
+    var NowTime = '<?php $NowTime = date('Y-m-d H:i:s', time()); echo $NowTime ?>';
     Vue.createApp({
         data() {
             return {
@@ -19,7 +20,7 @@
                         echo "post_slug: '" . $post['slug'] . "',";
                     }
                     if (empty($post['created'])) {
-                        echo "post_created: '',";
+                        echo "post_created: '" . $NowTime . "',";
                     } else {
                         echo "post_created: '" . $post['created'] . "',";
                     }
@@ -290,31 +291,23 @@
 <script>
 function myFunction() {
     let PostValue = this.vditor.getValue();
-    let NowTime = '<?php echo date('Y-m-d h:i:s', time()) ?>';
-    if ($("#post_created").val() == ""){
-        var PostData = {
-            title: $("#post_title").val(),
-            slug: $("#post_slug").val(),
-            created: NowTime,
-            modified: NowTime,
-            content: PostValue
-        };
-    } else {
-        var PostData = {
-            title: $("#post_title").val(),
-            slug: $("#post_slug").val(),
-            created: $("#post_created").val(),
-            modified: NowTime,
-            content: PostValue
-        };
+    let CreatedTime = NowTime;
+    if ($("#post_created").val() != ""){
+        CreatedTime = $("#post_created").val();
     }
-
+    let PostData = {
+            title: $("#post_title").val(),
+            slug: $("#post_slug").val(),
+            created: CreatedTime,
+            modified: NowTime,
+            content: PostValue
+        };
     console.log(PostData);
     $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }});
-    let a = $.post("<?php echo url()->current() ?>", PostData, function(data){
+    let a = $.post(document.URL, PostData, function(data){
         alert(data);
     });
 }

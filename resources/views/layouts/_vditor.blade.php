@@ -41,8 +41,8 @@
             'fullscreen',
             'both',
             'preview',
-            'info',
-            'help',
+            // 'info',
+            // 'help',
         ],
         }]
 
@@ -52,10 +52,6 @@
     toolbar,
     mode: 'wysiwyg',
     height: window.innerHeight + 100,
-    outline: {
-        enable: true,
-        position: 'right',
-    },
     debugger: true,
     typewriterMode: true,
     placeholder: 'Hello, Vditor!',
@@ -73,6 +69,20 @@
     toolbarConfig: {
         pin: true,
     },
+    // upload: {
+    //     accept: "image/*",
+    //     url: 'https://blog.xyz.blue/admin/upload',
+    //     linkToImgUrl: 'https://blog.xyz.blue/admin/upload',
+    //     fieldName: 'source',
+    //     success(editor, msg){
+    //         let content = window.vditor.getHTML();
+    //         // content += "<img src='"+  +"'>";
+    //         // console.log(editor);
+    //         // console.log(msg);
+    //         // _this.contentEditor.setValue(content)
+    //         window.vditor.insertValue(msg);  // 设置值回显  这种方式 删除内容等分块展示明显，方便操作
+    //     },
+    // },
     counter: {
         enable: true,
         type: 'text',
@@ -143,3 +153,46 @@
     //   },
     })
 </script>
+
+<div class="container">
+<a href="javascript:void(0)" onclick="uploadPhoto()">选择图片</a>
+<input type="file" id="photoFile" style="display: none;" onchange="upload()">
+<script>
+    function uploadPhoto() {
+        $("#photoFile").click();
+    }
+
+    /**
+     * 上传图片
+     */
+    function upload() {
+        if ($("#photoFile").val() == '') {
+            return;
+        }
+        // var CTime = Math.round(new Date());
+        var formData = new FormData();
+        formData.append('photo', document.getElementById('photoFile').files[0]);
+        // formData.append('time', CTime);
+        $.ajax({
+            url:"https://blog.xyz.blue/admin/upload",
+            type:"post",
+            async: false,
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                if (data !== '') {
+                    content = "<img src='"+ data +"'>";
+                    window.vditor.insertValue(content);
+                }
+            },
+            error:function(data) {
+                alert("上传失败")
+            }
+        });
+        // let content = this.vditor.getValue();
+        // content = "<img src='/storage/"+ CTime +".png'>";
+        // this.vditor.insertValue(content);
+    }
+</script>
+</div>

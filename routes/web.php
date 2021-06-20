@@ -18,8 +18,7 @@ Route::get('/', 'StaticPagesController@home')->name('home');
 Route::get('/admin', 'AdminController@admin')->name('admin_home');
 Route::get('/admin/edit', 'AdminController@edit')->name('admin_edit');
 Route::post('/admin/edit', 'AdminController@edit')->name('admin_edit_post');
-Route::get('/admin/new', 'AdminController@new')->name('admin_create');
-Route::post('/admin/new', 'AdminController@new')->name('admin_create_post');
+Route::post('/admin/upload', 'AdminController@upload')->name('admin_upload');
 
 Route::get('/posts/{post}', 'PostsController@show')->name('post_slug');
 Route::get('/posts/api/id/{post}', 'PostsController@show')->name('post_api');
