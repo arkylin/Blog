@@ -41,14 +41,20 @@ function GetPostsLists($posts) {
         if ($post != "") {
             $html .= '<div class="card">';
             $html .= '<div class="card-body">';
-
+            $html .= '<h5 class="card-title">';
             if (Gate::allows('CheckAdmin') && url() -> current() != route('home')) {
-                $html .= '<a href=' . url("admin/edit" . "?id=" . $post['id']) . '>';
+                $html .= '<a href=' . url("admin/edit" . "?id=" . $post['id']) . '>' . $post['title'];;
             } else {
-                $html .= '<a href=' . url("posts" . "/" . $post['slug']) . '>';
+                $html .= '<a href=' . url("posts" . "/" . $post['slug']) . '>' . $post['title'];;
             }
-            $html .= '<h5 class="card-title">' . $post['title'] . '</h5>';
             $html .= '</a>';
+            if ($post['status'] == 'secret') {
+                $html .= ' | <i class="fas fa-user-lock"></i>';
+            }
+            if ($post['status'] == 'unpublish') {
+                $html .= ' | <i class="fas fa-pencil-ruler"></i>';
+            }
+            $html .= '</h5>';
             $html .= '<i class="fas fa-edit" aria-hidden="true"></i>&nbsp;';
             $html .= $post['created'];
             $html .= ' | ';
