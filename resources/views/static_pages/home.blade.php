@@ -11,7 +11,6 @@
 <?php
 echo GetPostsLists($posts);
 ?>
-
 @stop
 
 @section('footer')

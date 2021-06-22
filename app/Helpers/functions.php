@@ -40,7 +40,11 @@ function GetPostsLists($posts) {
         $post = GetPostMetaData($post);
         if ($post != "") {
             $html .= '<div class="card">';
+            if (GetPostCover($post['content']) !== ''){
+                $html .= '<img src="' . GetPostCover($post['content']) .'" class="card-img-top" alt="cover">';
+            }
             $html .= '<div class="card-body">';
+            // Title
             $html .= '<h5 class="card-title">';
             if (Gate::allows('CheckAdmin') && url() -> current() != route('home')) {
                 $html .= '<a href=' . url("admin/edit" . "?id=" . $post['id']) . '>' . $post['title'];;
@@ -55,6 +59,7 @@ function GetPostsLists($posts) {
                 $html .= ' | <i class="fas fa-pencil-ruler"></i>';
             }
             $html .= '</h5>';
+            // Title End
             $html .= '<i class="fas fa-edit" aria-hidden="true"></i>&nbsp;';
             $html .= $post['created'];
             $html .= ' | ';
@@ -99,9 +104,14 @@ function GetPostsLists($posts) {
 	$html .= '</ul></nav>';
     return $html;
 }
-//生成文章编辑页面
-function GetPostEdit() {
-    $html = "";
-    
+//查找文章默认封面
+function GetPostCover($post) {
+    $reg_match = '~' . env('APP_URL') . '/storage' . '.*?(jpg|png|jpeg)' . '~';
+    preg_match($reg_match, $post, $match);
+    if (!empty($match)) {
+        return $match[0];  
+    } else {
+        return '';
+    }
 }
 ?>
