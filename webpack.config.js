@@ -1,9 +1,8 @@
 const path=require('path');
-
 module.exports={
     mode: 'development',
 	//JavaScript执行入口文件,
-	entry:'./resources/assets/sass/app.scss',
+	entry:'./resources/assets/app.js',
 	//需要指定一下输出的路径path和输出的文件名filename
 	output:{
 		filename:'bundle.js',   //自定义输出文件名
@@ -47,4 +46,14 @@ module.exports={
             },
         ]
     },
+    performance: {
+        hints: "warning", // 枚举
+        maxAssetSize: 3000000, // 整数类型（以字节为单位）
+        maxEntrypointSize: 5000000, // 整数类型（以字节为单位）
+        assetFilter: function (assetFilename) {
+            // 提供资源文件名的断言函数
+            // 只给出js与css文件的性能提示
+            return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
+        }
+    }
 }

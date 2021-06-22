@@ -8,7 +8,6 @@
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^5.15.3",
-        "axios": "^0.21.1",
         "bootstrap": "^5.0.1",
         "css-loader": "^5.2.6",
         "file-loader": "^6.2.0",
@@ -18,6 +17,7 @@
         "node-sass": "file:node/node-sass",
         "sass-loader": "^12.1.0",
         "style-loader": "^2.0.0",
-        "vue": "^2.6.14"
+        "vue": "^2.6.14",
+        "webpack-cli": "^4.7.2"
     }
 }

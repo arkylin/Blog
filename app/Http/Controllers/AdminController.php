@@ -37,32 +37,7 @@ class AdminController extends Controller
             return view('admin/lists', ['posts' => $posts]);
         }
     }
-
-    // public function upload(User $user, Request $request) {
-    //     $this->authorize('CheckAdmin', $user);
-    //     $file = array();
-    //     $file = $request->file('file');
-    //     if (!empty($file)){
-    //         //原文件名
-    //         // $originalName = $file->getClientOriginalName();
-    //         //扩展名
-    //         // $ext = $file->getClientOriginalExtension();
-    //         //MimeType
-    //         // $type = $file->getClientMimeType();
-    //         //临时绝对路径
-    //         // $realPath = $file->getRealPath();
-    //         $filename = uniqid().'.'.'png';
-    //         $bool = Storage::disk('public')->put($filename,file_get_contents($file));
-    //         //判断是否上传成功
-    //         if($bool){
-    //           echo 'success';
-    //         }else{
-    //           echo 'fail';
-    //         }
-    //     } else {
-    //         return "Null";
-    //     }
-    // }
+    
     public function upload(User $user, Request $request){
         $this->authorize('CheckAdmin', $user);
     	if ($request->isMethod('POST')) { //判断是否是POST上传，应该不会有人用get吧，恩，不会的
@@ -75,6 +50,8 @@ class AdminController extends Controller
     		if ($fileCharater->isValid()) { //括号里面的是必须加的哦
     			//如果括号里面的不加上的话，下面的方法也无法调用的
  
+                // 原文件名
+                $originalName = $file->getClientOriginalName();
     			//获取文件的扩展名 
     			$ext = $fileCharater->getClientOriginalExtension();
                 // $ext = 'png';
@@ -82,7 +59,7 @@ class AdminController extends Controller
     			//获取文件的绝对路径
     			$path = $fileCharater->getRealPath();
  
-    			//定义文件名
+    			//定义文件名 uniqid()
     			$filename = $FileUploadTime.'.'.$ext;
                 $filepath = date("Y",$FileUploadTime) . '/' . date("m",$FileUploadTime) . '/' . $filename;
  
