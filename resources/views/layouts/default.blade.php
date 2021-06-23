@@ -7,7 +7,6 @@
         <script src="<?php echo env('APP_URL') ?>/assets/bundle.js"></script>
         <!-- CSRF -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <!-- @yield('vditor', "") -->
         @yield('header', "")
     </head>
     <body>

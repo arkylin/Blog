@@ -172,6 +172,7 @@
         // var CTime = Math.round(new Date());
         var formData = new FormData();
         formData.append('photo', document.getElementById('photoFile').files[0]);
+        var FileName = document.getElementById('photoFile').files[0].name
         // formData.append('time', CTime);
         $.ajax({
             url:"https://blog.xyz.blue/admin/upload",
@@ -182,7 +183,7 @@
             processData: false,
             success: function(data) {
                 if (data !== '') {
-                    content = "<img src='"+ data +"'>";
+                    content = "<img src='"+ data +"' alt=" + FileName +">";
                     window.vditor.insertValue(content);
                 }
             },
