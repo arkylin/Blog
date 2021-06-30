@@ -2,22 +2,25 @@
     "private": true,
     "scripts": {
         "dev": "npm run development",
-        "development": "webpack --mode development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "webpack --mode production"
+        "production": "mix --production"
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^5.15.3",
+        "@popperjs/core": "^2.9.2",
+        "@vue/compiler-sfc": "^3.1.2",
+        "axios": "^0.21.1",
         "bootstrap": "^5.0.2",
-        "css-loader": "^5.2.6",
-        "file-loader": "^6.2.0",
         "jquery": "^3.6.0",
-        "less": "^4.1.1",
-        "less-loader": "^10.0.0",
-        "node-sass": "file:node/node-sass",
+        "laravel-mix": "^6.0.25",
+        "resolve-url-loader": "^4.0.0",
+        "sass": "^1.35.1",
         "sass-loader": "^12.1.0",
-        "style-loader": "^2.0.0",
-        "vue": "^3.1.1",
-        "webpack-cli": "^4.7.2"
+        "vue": "^3.1.2",
+        "vue-loader": "^16.3.0"
     }
 }

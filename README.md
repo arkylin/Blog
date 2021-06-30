@@ -1,7 +1,5 @@
 # 这里是Arkylin的自建博客系统
 
-## 安装WebPack & WebPack-Cli
-
 ## 设置伪静态
 
 在```public```目录下设置
