@@ -14,7 +14,7 @@
 @section('content')
 <article>
 <h2><?php echo $MD_title ?></h2>
-<div id="preview">请稍后</div>
+<div id="preview"><?php echo $post['content'] ?></div>
 </article>
 @stop
 

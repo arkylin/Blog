@@ -13,7 +13,7 @@
                     if (empty($post['title'])) {
                         echo "post_title: '',";
                     } else {
-                        echo "post_title: '" . $post['title'] . "',";
+                        echo 'post_title: "' . $post['title'] . '",';
                     }
                     if (empty($post['slug'])) {
                         echo "post_slug: '',";

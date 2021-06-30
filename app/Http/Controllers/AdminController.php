@@ -51,7 +51,7 @@ class AdminController extends Controller
     			//如果括号里面的不加上的话，下面的方法也无法调用的
  
                 // 原文件名
-                $originalName = $file->getClientOriginalName();
+                $originalName = $fileCharater->getClientOriginalName();
     			//获取文件的扩展名 
     			$ext = $fileCharater->getClientOriginalExtension();
                 // $ext = 'png';
