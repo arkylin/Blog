@@ -1,0 +1,20 @@
+img {
+    width:100%;
+    height:auto;
+}
+
+.post-card {
+    border: 1px solid #ccc!important;
+    padding:14px;
+    border-radius: 16px!important;
+}
+
+.post-card-body a {
+    text-decoration:none;
+    font-family:"楷体", "微软雅黑", serif;
+    font-weight: bolder;
+}
+
+.post-card-text {
+    word-wrap:break-word;
+}

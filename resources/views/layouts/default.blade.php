@@ -4,13 +4,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>@yield('title', "Arkylin's Blog")</title>
         <!-- 引入js、css -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <script src="{{ mix('js/app.js') }}"></script>
+        <!-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> -->
+        <link rel="stylesheet" href="<?php echo env('ASSETS_URL') ?>/css/app.css">
+        <!-- <script src="{{ mix('js/app.js') }}"></script> -->
+        <script src="<?php echo env('ASSETS_URL') ?>/js/app.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js"></script>
         <!-- CSRF -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         @yield('header', "")
     </head>
     <body>
+    <script type='text/javascript'>
+    // 　　window.onload = function(){
+    // 　　　　alert("页面加载完成====》onload");
+    // 　　}
+    　　$(document).ready(function () {
+    　　　　var lazyLoadInstance = new LazyLoad({
+            // Your custom settings go here
+            });
+    　　});
+    </script>
     <div class="container" id="main">
         @include('layouts._header')
             <div class="offset-md-1 col-md-10">

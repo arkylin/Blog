@@ -39,13 +39,19 @@ function GetPostsLists($posts) {
     foreach ($posts['data'] as $post){
         $post = GetPostMetaData($post);
         if ($post != "") {
-            $html .= '<div class="card">';
+            // $html .= '<div class="card">';
+            $html .= '<div class="post-card">';
             if (GetPostCover($post['content']) !== ''){
-                $html .= '<img src="' . GetPostCover($post['content']) .'" class="card-img-top" alt="cover">';
+                // $html .= '<img src="' . GetPostCover($post['content']) .'" class="card-img-top" alt="cover">';
+                $html .= '<img data-src="' . GetPostCover($post['content']) .'" class="lazy post-card-cover" alt="cover">';
+                $html .= '<br />';
+                $html .= '<br />';
             }
-            $html .= '<div class="card-body">';
+            // $html .= '<div class="card-body">';
+            $html .= '<div class="post-card-body">';
             // Title
-            $html .= '<h5 class="card-title">';
+            // $html .= '<h5 class="card-title">';
+            $html .= '<h5 class="post-card-title">';
             if (Gate::allows('CheckAdmin') && url() -> current() != route('home')) {
                 $html .= '<a href=' . url("admin/edit" . "?id=" . $post['id']) . '>' . $post['title'];;
             } else {
@@ -71,7 +77,8 @@ function GetPostsLists($posts) {
             $preview = preg_replace('~<~', "(", $preview);
             $preview = preg_replace('~>~', ")", $preview);
             if ($preview != "") {
-                $html .= '<p class="card-text">' . $preview . '</p>';
+                // $html .= '<p class="card-text">' . $preview . '</p>';
+                $html .= '<p class="post-card-text">' . $preview . '</p>';
             }
             $html .= '</div>';
             $html .= '</div>';
@@ -106,7 +113,7 @@ function GetPostsLists($posts) {
 }
 //查找文章默认封面
 function GetPostCover($post) {
-    $reg_match = '~' . env('APP_URL') . '/storage' . '.*?(jpg|png|jpeg)' . '~';
+    $reg_match = '~' . env('ASSETS_URL') . '/attachments' . '.*?(jpg|png|jpeg)' . '~';
     preg_match($reg_match, $post, $match);
     if (!empty($match)) {
         return $match[0];  
