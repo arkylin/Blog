@@ -4,11 +4,33 @@ img {
 }
 
 .post-card {
+    width: 100%;
     border: 1px solid #ccc!important;
     padding:14px;
     border-radius: 16px!important;
 }
 
+.post-card-cover {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+@media screen and (min-width: 768px){
+    .post-card {
+        display: -webkit-flex;
+        display: flex;
+    }
+
+    .post-card-cover {
+        width: 30%;
+        margin-right: 15px;
+        margin-bottom: 0px;
+    }
+
+    .with-cover {
+        width: 70%;
+    }
+}
 .post-card-body a {
     text-decoration:none;
     font-family:"楷体", "微软雅黑", serif;

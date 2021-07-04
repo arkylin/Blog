@@ -44,11 +44,14 @@ function GetPostsLists($posts) {
             if (GetPostCover($post['content']) !== ''){
                 // $html .= '<img src="' . GetPostCover($post['content']) .'" class="card-img-top" alt="cover">';
                 $html .= '<img data-src="' . GetPostCover($post['content']) .'" class="lazy post-card-cover" alt="cover">';
-                $html .= '<br />';
-                $html .= '<br />';
+                // $html .= '<br />';
+                // $html .= '<br />';
+                $html .= '<div class="post-card-body with-cover">';
+            } else {
+                $html .= '<div class="post-card-body">';
             }
             // $html .= '<div class="card-body">';
-            $html .= '<div class="post-card-body">';
+
             // Title
             // $html .= '<h5 class="card-title">';
             $html .= '<h5 class="post-card-title">';
