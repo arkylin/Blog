@@ -44,8 +44,6 @@ function GetPostsLists($posts) {
             if (GetPostCover($post['content']) !== ''){
                 // $html .= '<img src="' . GetPostCover($post['content']) .'" class="card-img-top" alt="cover">';
                 $html .= '<img data-src="' . GetPostCover($post['content']) .'" class="lazy post-card-cover" alt="cover">';
-                // $html .= '<br />';
-                // $html .= '<br />';
                 $html .= '<div class="post-card-body with-cover">';
             } else {
                 $html .= '<div class="post-card-body">';
@@ -116,7 +114,7 @@ function GetPostsLists($posts) {
 }
 //查找文章默认封面
 function GetPostCover($post) {
-    $reg_match = '~' . env('ASSETS_URL') . '/attachments' . '.*?(jpg|png|jpeg)' . '~';
+    $reg_match = '~' . env('APP_URL') . '/attachments' . '.*?(jpg|png|jpeg)' . '~';
     preg_match($reg_match, $post, $match);
     if (!empty($match)) {
         return $match[0];  

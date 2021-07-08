@@ -4,10 +4,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>@yield('title', "Arkylin's Blog")</title>
         <!-- 引入js、css -->
-        <!-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> -->
-        <link rel="stylesheet" href="<?php echo env('ASSETS_URL') ?>/css/app.css">
-        <!-- <script src="{{ mix('js/app.js') }}"></script> -->
-        <script src="<?php echo env('ASSETS_URL') ?>/js/app.js"></script>
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <!-- <link rel="stylesheet" href="<?php echo env('ASSETS_URL') ?>/css/app.css"> -->
+        <script src="{{ mix('js/app.js') }}"></script>
+        <!-- <script src="<?php echo env('ASSETS_URL') ?>/js/app.js"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.4.0/dist/lazyload.min.js"></script>
         <!-- CSRF -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
